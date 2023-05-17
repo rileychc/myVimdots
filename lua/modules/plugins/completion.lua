@@ -14,7 +14,7 @@ completion["neovim/nvim-lspconfig"] = {
 		},
 	},
 }
-completion["jose-elias-alvarez/null-ls.nvim"] = {
+completion["jose-elias-alvarez/null-ls.nvim"] = { --代码格式化插件
 	lazy = true,
 	event = { "CursorHold", "CursorHoldI" },
 	config = require("completion.null-ls"),
@@ -24,17 +24,17 @@ completion["jose-elias-alvarez/null-ls.nvim"] = {
 	},
 }
 
-completion["hrsh7th/nvim-cmp"] = {
+completion["hrsh7th/nvim-cmp"] = { --代码补全插件
 	lazy = true,
 	event = "InsertEnter",
 	config = require("completion.cmp"),
 	dependencies = {
 		{
-			"L3MON4D3/LuaSnip",
-			dependencies = { "rafamadriz/friendly-snippets" },
+			"L3MON4D3/LuaSnip", --代码片段插件
+			dependencies = { "rafamadriz/friendly-snippets" }, --代码片段来源
 			config = require("completion.luasnip"),
 		},
-		{ "lukas-reineke/cmp-under-comparator" },
+		{ "lukas-reineke/cmp-under-comparator" }, --下划线项的更好完成排序
 		{ "saadparwaiz1/cmp_luasnip" },
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "hrsh7th/cmp-nvim-lua" },

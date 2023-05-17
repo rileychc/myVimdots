@@ -18,7 +18,7 @@ lang["Saecki/crates.nvim"] = {
 	config = require("lang.crates"),
 	dependencies = { "nvim-lua/plenary.nvim" },
 }
-lang["iamcco/markdown-preview.nvim"] = {
+lang["iamcco/markdown-preview.nvim"] = { --markdown预览插件
 	lazy = true,
 	ft = "markdown",
 	build = ":call mkdp#util#install()",
