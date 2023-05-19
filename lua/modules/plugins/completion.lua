@@ -1,5 +1,9 @@
 local completion = {}
 
+completion["Exafunction/codeium.vim"] = {
+	event = "VeryLazy",
+	config = require("completion.codeium-vim"),
+}
 completion["neovim/nvim-lspconfig"] = {
 	lazy = true,
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
@@ -38,24 +42,25 @@ completion["hrsh7th/nvim-cmp"] = { --代码补全插件
 		{ "saadparwaiz1/cmp_luasnip" },
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "hrsh7th/cmp-nvim-lua" },
-		{ "andersevenrud/cmp-tmux" },
 		{ "hrsh7th/cmp-path" },
 		{ "f3fora/cmp-spell" },
 		{ "hrsh7th/cmp-buffer" },
-		{ "kdheepak/cmp-latex-symbols" },
 		{ "ray-x/cmp-treesitter" },
+		-- { "kdheepak/cmp-latex-symbols" },--暂时用不上
+		--{ "andersevenrud/cmp-tmux" },
 		--忘了
 		-- { "tzachar/cmp-tabnine", build = "./install.sh", config = require("completion.tabnine") },
-		-- {
-		-- 	"jcdickinson/codeium.nvim",
-		-- 	dependencies = {
-		-- 		"nvim-lua/plenary.nvim",
-		-- 		"MunifTanjim/nui.nvim",
-		-- 	},
-		-- 	config = require("completion.codeium"),
-		-- },
+		{
+			"jcdickinson/codeium.nvim",
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+				"MunifTanjim/nui.nvim",
+			},
+			config = require("completion.codeium"),
+		},
 	},
 }
+
 -- completion["zbirenbaum/copilot.lua"] = {
 --     lazy = true,
 --     endabled = true,

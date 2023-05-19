@@ -164,7 +164,7 @@ endfunc
 				0,
 				"n",
 				"<F7>",
-				"<ESC>:w<CR>:split<CR>:te g++ -std=c++20 -Wshadow -Wall -o ~/Public/Bin_Files/%:t:r.out %  -g -I ./include/ -I ..  -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG && time ~/Public/Bin_Files/%:t:r.out<CR>i\n", --
+				"<ESC>:w<CR>:split<CR>:te g++ -std=c++17 -Wshadow -Wall -o ~/Public/Bin_Files/%:t:r.out %  -g -I ./include/ -I ..  -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG && time ~/Public/Bin_Files/%:t:r.out<CR>i\n", --
 				{ silent = true, noremap = true }
 			)
 		end,

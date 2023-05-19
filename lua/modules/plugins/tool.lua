@@ -1,10 +1,23 @@
 local tool = {}
 
-tool["mg979/vim-visual-multi"] = {
+tool["JuanZoran/Trans.nvim"] = { --翻译插件
+	event = "VeryLazy",
+	build = function()
+		require("Trans").install()
+	end,
+	keys = {
+		{ "<leader>tl", "<cmd>Translate<CR>", mode = { "n", "v" }, desc = "Translate" },
+		{ "<leader>ti", "<cmd>TranslateInput<CR>", mode = { "n", "v" }, desc = "InputTranslate" },
+		{ "<leader>tp", "<cmd>TransPlay<CR>", mode = { "n", "v" }, desc = "TransPlay" },
+	},
+	dependencies = { "kkharji/sqlite.lua" },
+	config = require("tool.Trans"),
+}
+tool["mg979/vim-visual-multi"] = { --多光标插件
 	event = "VeryLazy",
 	config = require("tool.vim-visual-multi"),
 }
-tool["madskjeldgaard/cppman.nvim"] = {
+tool["madskjeldgaard/cppman.nvim"] = { --cpp文档插件
 	-- event = "VeryLazy",
 	dependencies = {
 		{
@@ -14,7 +27,7 @@ tool["madskjeldgaard/cppman.nvim"] = {
 	},
 	config = require("tool.cppman-nvim"),
 }
-tool["tpope/vim-fugitive"] = {
+tool["tpope/vim-fugitive"] = { --git插件
 	lazy = true,
 	cmd = { "Git", "G" },
 }
@@ -25,7 +38,7 @@ tool["tpope/vim-fugitive"] = {
 -- 	cond = vim.fn.executable("fcitx5-remote") == 1,
 -- 	config = require("tool.fcitx5"),
 -- }
-tool["nvim-tree/nvim-tree.lua"] = {
+tool["nvim-tree/nvim-tree.lua"] = { --文件浏览
 	lazy = true,
 	cmd = {
 		"NvimTreeToggle",
@@ -36,12 +49,12 @@ tool["nvim-tree/nvim-tree.lua"] = {
 	},
 	config = require("tool.nvim-tree"),
 }
-tool["ibhagwan/smartyank.nvim"] = {
+tool["ibhagwan/smartyank.nvim"] = { --智能复制
 	lazy = true,
 	event = "BufReadPost",
 	config = require("tool.smartyank"),
 }
-tool["michaelb/sniprun"] = {
+tool["michaelb/sniprun"] = { --局部代码执行
 	lazy = true,
 	-- You need to cd to `~/.local/share/nvim/site/lazy/sniprun/` and execute `bash ./install.sh`,
 	-- if you encountered error about no executable sniprun found.

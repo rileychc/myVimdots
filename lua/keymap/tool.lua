@@ -6,7 +6,9 @@ local map_callback = bind.map_callback
 require("keymap.helpers")
 
 local plug_map = {
-	["n|<leader>hl"] = map_cr("CPPMan"):with_noremap():with_silent():with_desc("Find Lib Help"),
+
+	-- Plugin: cppman
+	["n|<leader>fl"] = map_cr("CPPMan"):with_noremap():with_silent():with_desc("Find Lib Help"),
 	-- Plugin: vim-fugitive
 	["n|<leader>gps"] = map_cr("G push"):with_noremap():with_silent():with_desc("git: Push"),
 	["n|<leader>gpl"] = map_cr("G pull"):with_noremap():with_silent():with_desc("git: Pull"),
@@ -17,9 +19,9 @@ local plug_map = {
 	["n|<leader>ef"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent():with_desc("filetree: Find file"),
 	["n|<leader>er"] = map_cr("NvimTreeRefresh"):with_noremap():with_silent():with_desc("filetree: Refresh"),
 
-	-- Plugin: sniprun
-	["v|<leader>r"] = map_cr("SnipRun"):with_noremap():with_silent():with_desc("tool: Run code by range"),
-	["n|<leader>r"] = map_cu([[%SnipRun]]):with_noremap():with_silent():with_desc("tool: Run code by file"),
+	-- Plugin: sniprun--暂时用不上
+	-- ["v|<leader>r"] = map_cr("SnipRun"):with_noremap():with_silent():with_desc("tool: Run code by range"),
+	-- ["n|<leader>r"] = map_cu([[%SnipRun]]):with_noremap():with_silent():with_desc("tool: Run code by file"),
 
 	-- Plugin: toggleterm
 	["t|<Esc><Esc>"] = map_cmd([[<C-\><C-n>]]):with_noremap():with_silent(), -- switch to normal mode in terminal.
@@ -52,27 +54,29 @@ local plug_map = {
 		:with_desc("git: Toggle lazygit"),
 	-- FIX:
 	-- Plugin: trouble
-	["n|<leader>tt"] = map_cr("TroubleToggle"):with_noremap():with_silent():with_desc("lsp: Toggle trouble list"),
-	["n|<leader>tr"] = map_cr("TroubleToggle lsp_references")
-		:with_noremap()
-		:with_silent()
-		:with_desc("lsp: Show lsp references"),
-	["n|<leader>td"] = map_cr("TroubleToggle document_diagnostics")
+	["n|<leader>xl"] = map_cr("TroubleToggle"):with_noremap():with_silent():with_desc("lsp: Toggle trouble list"),
+	-- ["n|<leader>tr"] = map_cr("TroubleToggle lsp_references")--显示引用,用不上
+	-- 	:with_noremap()
+	-- 	:with_silent()
+	-- 	:with_desc("lsp: Show lsp references"),
+	["n|<leader>xd"] = map_cr("Telescope diagnostics"):with_noremap():with_silent():with_desc("Telescope Diagnostics"),
+	["n|<leader>xD"] = map_cr("TroubleToggle document_diagnostics")
 		:with_noremap()
 		:with_silent()
 		:with_desc("lsp: Show document diagnostics"),
-	["n|<leader>tw"] = map_cr("TroubleToggle workspace_diagnostics")
+	["n|<leader>xw"] = map_cr("TroubleToggle workspace_diagnostics")
 		:with_noremap()
 		:with_silent()
 		:with_desc("lsp: Show workspace diagnostics"),
-	["n|<leader>tq"] = map_cr("TroubleToggle quickfix")
+	["n|<leader>xq"] = map_cr("TroubleToggle quickfix")
 		:with_noremap()
 		:with_silent()
 		:with_desc("lsp: Show quickfix list"),
-	["n|<leader>tl"] = map_cr("TroubleToggle loclist"):with_noremap():with_silent():with_desc("lsp: Show loclist"),
+	["n|<leader>xL"] = map_cr("TroubleToggle loclist"):with_noremap():with_silent():with_desc("lsp: Show loclist"),
 
 	-- Plugin: telescope
-	["n|<leader>fc"] = map_callback(function()
+	["n|<leader>fh"] = map_cr("Telescope help_tags"):with_silent():with_noremap():with_desc("Help Pages"),
+	["n|<leader>fC"] = map_callback(function()
 			_command_panel()
 		end)
 		:with_noremap()
@@ -103,14 +107,14 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("find: Word in project"),
-	["n|<leader>fo"] = map_cu("Telescope oldfiles"):with_noremap():with_silent():with_desc("find: File by history"), --好像不太正常
+	["n|<leader>fR"] = map_cu("Telescope oldfiles"):with_noremap():with_silent():with_desc("find: File by history"), --好像不太正常
 	["n|<leader>ff"] = map_cu("Telescope find_files"):with_noremap():with_silent():with_desc("find: File in project"),
 	["n|<leader>ft"] = map_cu("Telescope colorscheme")
 		:with_noremap()
 		:with_silent()
 		:with_desc("ui: Change colorscheme for current session"),
 	["n|<leader>bn"] = map_cu(":enew"):with_noremap():with_silent():with_desc("buffer: New"),
-	["n|<leader>t"] = map_cu(":enew"):with_noremap():with_silent():with_desc("buffer: New"),
+	["n|<C-t>"] = map_cu(":enew"):with_noremap():with_silent():with_desc("buffer: New"),
 	["n|<leader>fg"] = map_cu("Telescope git_files")
 		:with_noremap()
 		:with_silent()
@@ -120,9 +124,9 @@ local plug_map = {
 		:with_silent()
 		:with_desc("edit: Change current direrctory by zoxide"),
 	["n|<leader>fb"] = map_cu("Telescope buffers"):with_noremap():with_silent():with_desc("find: Buffer opened"),
-	["n|<leader>fs"] = map_cu("Telescope grep_string"):with_noremap():with_silent():with_desc("find: Current word"),
+	["n|<leader>fc"] = map_cu("Telescope grep_string"):with_noremap():with_silent():with_desc("find: Current word"),
 
-	-- Plugin: dap
+	-- Plugin: dap(vscode同款)
 	["n|<F5>"] = map_callback(function()
 			require("dap").continue()
 		end)
@@ -142,19 +146,19 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("debug: Toggle breakpoint"),
-	["n|<F11>"] = map_callback(function()
+	["n|<F11>"] = map_callback(function() --步入
 			require("dap").step_into()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("debug: Step into"),
-	["n|<F10>"] = map_callback(function()
+	["n|<F23>"] = map_callback(function() --步出
 			require("dap").step_out()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("debug: Step out"),
-	["n|<F23>"] = map_callback(function()
+	["n|<F10>"] = map_callback(function() --步过
 			require("dap").step_over()
 		end)
 		:with_noremap()

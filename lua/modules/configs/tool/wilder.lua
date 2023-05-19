@@ -1,4 +1,4 @@
-return function()
+return function() --命令模式下的补全  fzy-lua为依赖
 	local wilder = require("wilder")
 	local colors = require("modules.utils").get_palette()
 	local icons = { ui = require("modules.utils.icons").get("ui") }
@@ -55,12 +55,28 @@ return function()
 		left = { " ", wilder.wildmenu_spinner(), " " },
 		right = { " ", wilder.wildmenu_index() },
 	})
+	-- wilder.set_option(-- 原装
+	-- 	"renderer",
+	-- 	wilder.renderer_mux({
+	-- 		-- [":"] = popupmenu_renderer,
+	-- 		["/"] = wildmenu_renderer,
+	-- 		substitute = wildmenu_renderer,
+	-- 	})
+	-- )
 	wilder.set_option(
 		"renderer",
-		wilder.renderer_mux({
-			[":"] = popupmenu_renderer,
-			["/"] = wildmenu_renderer,
-			substitute = wildmenu_renderer,
+		wilder.wildmenu_renderer({
+			highlights = {
+				default = "StatusLine",
+				accent = wilder.make_hl("WilderAccent", "Pmenu", { { a = 1 }, { a = 1 }, { foreground = "#f4468f" } }),
+			},
+			highlighter = {
+				wilder.lua_pcre2_highlighter(), -- requires `luarocks install pcre2`
+				wilder.lua_fzy_highlighter(), -- requires fzy-lua-native vim plugin found
+			},
+			separator = " · ",
+			left = { " ", wilder.wildmenu_spinner(), " " },
+			right = { " ", wilder.wildmenu_index() },
 		})
 	)
 end

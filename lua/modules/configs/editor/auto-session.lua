@@ -1,4 +1,4 @@
-return function()
+return function() --窗口会话操作
 	require("auto-session").setup({
 		log_level = "info",
 		auto_session_enable_last_session = true,

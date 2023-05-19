@@ -12,9 +12,9 @@ local plug_map = {
 	["n|[t"] = map_callback(function()
 		require("todo-comments").jump_prev()
 	end):with_desc("Previous todo comment"),
-	["n|<leader>tx"] = map_cu("TodoTrouble"):with_desc("Todo (Trouble)"),
-	["n|<leader>tX"] = map_cr("TodoTrouble keywords=TODO,FIX,FIXME"):with_desc("Todo/Fix/Fixme (Trouble)"),
-	["n|<leader>tf"] = map_cu("TodoTelescope"):with_desc("Todo"),
+	-- ["n|<leader>xt"] = map_cu("TodoTrouble"):with_desc("Todo (Trouble)"),--可以用由TodoTelescope代替
+	["n|<leader>xt"] = map_cr("TodoTrouble keywords=TODO,FIX,FIXME"):with_desc("Todo/Fix/Fixme (Trouble)"),
+	["n|<leader>xT"] = map_cu("TodoTelescope"):with_desc("Find Todo"),
 
 	-- Plugin: accelerate-jk
 	["n|j"] = map_callback(function()
@@ -31,7 +31,7 @@ local plug_map = {
 
 	-- Plugin: nvim-bufdel
 	["n|<A-q>"] = map_cr("BufDel"):with_noremap():with_silent():with_desc("buffer: Close current"),
-	["n|<leader>bd"] = map_cr("BufDel"):with_noremap():with_silent():with_desc("buffer: Close current"),
+	["n|<leader>bD"] = map_cr("BufDel"):with_noremap():with_silent():with_desc("buffer: Close current"),
 
 	-- Plugin: comment.nvim
 	["n|gcc"] = map_callback(function()

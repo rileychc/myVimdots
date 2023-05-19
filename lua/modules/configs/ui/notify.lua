@@ -19,7 +19,8 @@ return function()
 		-- Render function for notifications. See notify-render()
 		render = "compact",
 		---@usage highlight behind the window for stages that change opacity
-		background_colour = "Normal",
+		-- background_colour = "Normal",--被我修改
+		background_colour = "#000000",
 		---@usage minimum width for notification windows
 		minimum_width = 50,
 		---@usage notifications with level lower than this would be ignored. [ERROR > WARN > INFO > DEBUG > TRACE]

@@ -1,4 +1,4 @@
-return function()
+return function() --管理crates.io依赖项
 	local icons = {
 		diagnostics = require("modules.utils.icons").get("diagnostics", true),
 		git = require("modules.utils.icons").get("git", true),

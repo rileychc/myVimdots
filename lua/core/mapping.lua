@@ -12,6 +12,8 @@ local core_map = {
 	["nv|J"] = map_cmd("5j"):with_noremap(),
 	["nv|K"] = map_cmd("5k"):with_noremap(),
 	["nv|L"] = map_cmd("5l"):with_noremap(),
+	["nv|e"] = map_cmd("$"):with_noremap(),
+	["nv|E"] = map_cmd("^"):with_noremap(),
 	-- Suckless
 	["n|<S-Tab>"] = map_cr("normal za"):with_noremap():with_silent():with_desc("edit: Toggle code fold"),
 	["n|<C-s>"] = map_cu("write"):with_noremap():with_silent():with_desc("edit: Save file"),
@@ -45,7 +47,7 @@ local core_map = {
 	["i|<C-b>"] = map_cmd("<Left>"):with_noremap():with_desc("edit: Move cursor to left"),
 	["i|<C-a>"] = map_cmd("<ESC>^i"):with_noremap():with_desc("edit: Move cursor to line start"),
 	["i|<C-s>"] = map_cmd("<Esc>:w<CR>"):with_desc("edit: Save file"),
-	["i|<leader>qq"] = map_cmd("<Esc>:wq<CR>"):with_desc("edit: Save file and quit"),
+	-- ["i|<leader>qq"] = map_cmd("<Esc>:wq<CR>"):with_desc("edit: Save file and quit"),
 	-- Command mode
 	["c|<C-b>"] = map_cmd("<Left>"):with_noremap():with_desc("edit: Left"),
 	["c|<C-f>"] = map_cmd("<Right>"):with_noremap():with_desc("edit: Right"),

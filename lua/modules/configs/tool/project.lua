@@ -1,4 +1,4 @@
-return function()
+return function() --项目管理
 	require("project_nvim").setup({
 		manual_mode = false,
 		detection_methods = { "lsp", "pattern" },

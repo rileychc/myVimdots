@@ -43,5 +43,22 @@
             "#endif // $1"
         ],
         "description": "header file definitions"
+    },
+    "cpp": {
+        "prefix": "cpp",
+        "body": [
+            "#include \"bits/stdc++.h\"",
+            "",
+            "using namespace std;",
+            "",
+            "int main(int argc, char *argv[]) {",
+            "",
+            "\t$1",
+            "",
+            "\treturn 0;",
+            "",
+            "}"
+        ],
+        "description": "cpp temporary template"
     }
 }

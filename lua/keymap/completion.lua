@@ -9,11 +9,11 @@ local mapping = {}
 function mapping.lsp(buf)
 	local map = {
 		-- LSP-related keymaps, work only when event = { "InsertEnter", "LspStart" }
-		["n|<leader>lf"] = map_cr("LspInfo"):with_buffer(buf):with_desc("lsp: Info"),
-		["n|<leader>lr"] = map_cr("LspRestart"):with_buffer(buf):with_nowait():with_desc("lsp: Restart"),
-		["n|<leader>ld"] = map_cr("Lspsaga show_line_diagnostics"):with_buffer(buf):with_desc("lsp: Line diagnostic"),
-		["n|<leader>li"] = map_cr("Lspsaga incoming_calls"):with_buffer(buf):with_desc("lsp: Show incoming calls"),
-		["n|<leader>lo"] = map_cr("Lspsaga outgoing_calls"):with_buffer(buf):with_desc("lsp: Show outgoing calls"),
+		["n|<leader>xc"] = map_cr("Lspsaga show_line_diagnostics"):with_buffer(buf):with_desc("lsp: Line diagnostic"),
+		["n|<leader>Lf"] = map_cr("LspInfo"):with_buffer(buf):with_desc("lsp: Info"),
+		["n|<leader>Lr"] = map_cr("LspRestart"):with_buffer(buf):with_nowait():with_desc("lsp: Restart"),
+		["n|gI"] = map_cr("Lspsaga incoming_calls"):with_buffer(buf):with_desc("lsp: Show incoming calls"),
+		["n|gO"] = map_cr("Lspsaga outgoing_calls"):with_buffer(buf):with_desc("lsp: Show outgoing calls"),
 		["n|go"] = map_cr("Lspsaga outline"):with_buffer(buf):with_desc("lsp: Toggle outline"),
 		["n|[g"] = map_cr("Lspsaga diagnostic_jump_prev"):with_buffer(buf):with_desc("lsp: Prev diagnostic"),
 		["n|]g"] = map_cr("Lspsaga diagnostic_jump_next"):with_buffer(buf):with_desc("lsp: Next diagnostic"),

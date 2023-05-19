@@ -6,6 +6,7 @@ return vim.schedule_wrap(function()
 
 	require("nvim-treesitter.configs").setup({
 		ensure_installed = {
+
 			"bash",
 			"c",
 			"cpp",
@@ -15,9 +16,9 @@ return vim.schedule_wrap(function()
 			"html",
 			"javascript",
 			"json",
-			"latex",
+			-- "latex",
 			"lua",
-			"make",
+			"cmake",
 			"markdown",
 			"markdown_inline",
 			"python",
