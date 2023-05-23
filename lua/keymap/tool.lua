@@ -8,7 +8,12 @@ require("keymap.helpers")
 local plug_map = {
 
 	-- Plugin: cppman
-	["n|<leader>fl"] = map_cr("CPPMan"):with_noremap():with_silent():with_desc("Find Lib Help"),
+	["n|<leader>fL"] = map_cr("CPPMan"):with_noremap():with_silent():with_desc("Find Lib Help"),
+	["n|<leader>fl"] = map_callback(function()
+			require("cppman").open_cppman_for(vim.fn.expand("<cword>"))
+		end)
+		:with_silent()
+		:with_desc("Cusor Library"),
 	-- Plugin: vim-fugitive
 	["n|<leader>gps"] = map_cr("G push"):with_noremap():with_silent():with_desc("git: Push"),
 	["n|<leader>gpl"] = map_cr("G pull"):with_noremap():with_silent():with_desc("git: Pull"),
@@ -127,12 +132,39 @@ local plug_map = {
 	["n|<leader>fc"] = map_cu("Telescope grep_string"):with_noremap():with_silent():with_desc("find: Current word"),
 
 	-- Plugin: dap(vscode同款)
+
+	-- ["n|<F5>"] = map_callback(function() --如果存在就不编译
+	-- 		local executable = "/Users/riley/Public/Bin_Files/"
+	-- 			.. vim.fn.fnamemodify(vim.fn.expand("%"), ":t:r")
+	-- 			.. ".out"
+	-- 		if vim.fn.filereadable(executable) == 0 and vim.bo.filetype == ("cpp" or "c") then --判断该可调试文件是否存在，如果存在则调试，如果不存在则先编译后调试
+	-- 			vim.cmd(
+	-- 				"!g++ -std=c++17 -Wshadow -Wall -o ~/Public/Bin_Files/%:t:r.out  % -g -I ./include/ -I .. -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG"
+	-- 			)
+	-- 			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, true, true), "n", true)
+	-- 		end
+	-- 		require("dap").continue()
+	-- 	end)
+	-- 	:with_noremap()
+	-- 	:with_silent()
+	-- 	:with_desc("debug: Run/Continue"),
+
 	["n|<F5>"] = map_callback(function()
+			local executable = "/Users/riley/Public/Bin_Files/"
+				.. vim.fn.fnamemodify(vim.fn.expand("%"), ":t:r")
+				.. ".out"
+			if vim.bo.filetype == ("cpp" or "c") then --判断该可调试文件是否存在，如果存在则调试，如果不存在则先编译后调试
+				vim.cmd(
+					"!g++ -std=c++17 -Wshadow -Wall -o ~/Public/Bin_Files/%:t:r.out  % -g -I ./include/ -I .. -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG"
+				)
+				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, true, true), "n", true)
+			end
 			require("dap").continue()
 		end)
 		:with_noremap()
 		:with_silent()
 		:with_desc("debug: Run/Continue"),
+
 	["n|<F17>"] = map_callback(function()
 			require("dap").terminate()
 			require("dapui").close()
@@ -140,12 +172,12 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("debug: Stop"),
-	["n|<F9>"] = map_callback(function()
-			require("dap").toggle_breakpoint()
-		end)
-		:with_noremap()
-		:with_silent()
-		:with_desc("debug: Toggle breakpoint"),
+	-- ["n|<F9>"] = map_callback(function()
+	-- 		require("dap").toggle_breakpoint()
+	-- 	end)
+	-- 	:with_noremap()
+	-- 	:with_silent()
+	-- 	:with_desc("debug: Toggle breakpoint"),
 	["n|<F11>"] = map_callback(function() --步入
 			require("dap").step_into()
 		end)
@@ -170,7 +202,7 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("debug: Set breakpoint with condition"),
-	["n|<leader>dc"] = map_callback(function()
+	["n|<leader>dt"] = map_callback(function()
 			require("dap").run_to_cursor()
 		end)
 		:with_noremap()
@@ -188,6 +220,16 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("debug: Open REPL"),
+	-- Plugin: persistene-breakpoints
+	["n|<leader>dc"] = map_cr("PBClearAllBreakpoints")
+		:with_noremap()
+		:with_silent()
+		:with_desc("debug: Clear all breakpoints"),
+	["n|<F9>"] = map_cr("PBToggleBreakpoint"):with_noremap():with_silent():with_desc("debug: Toggle breakpoint"),
+	["n|<2-LeftMouse>"] = map_cr("PBToggleBreakpoint")
+		:with_noremap()
+		:with_silent()
+		:with_desc("debug: Toggle breakpoint"),
 	-- ["n|<C-\\>"] = map_cr([[execute v:count . "ToggleTerm direction=horizontal"]])
 	-- 	:with_noremap()
 	-- 	:with_silent()

@@ -7,6 +7,8 @@ local map_cr = bind.map_cr
 local plug_map = {
 	-- Plugin MarkdownPreview
 	["n|<leader>md"] = map_cr("MarkdownPreviewToggle"):with_noremap():with_silent():with_desc("tool: Preview markdown"),
+	-- Plugin clipboard-image
+	["n|<leader>mi"] = map_cr("PasteImg"):with_noremap():with_silent():with_desc("tool: Clipboard image"),
 }
 
 bind.nvim_load_mapping(plug_map)
