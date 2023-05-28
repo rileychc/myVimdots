@@ -31,10 +31,10 @@ editor["LunarVim/bigfile.nvim"] = { --加载大文件
 	config = require("editor.bigfile"),
 	cond = require("core.settings").load_big_files_faster,
 }
-editor["ojroques/nvim-bufdel"] = { --buffer操作
-	lazy = true,
-	event = "BufReadPost",
-}
+-- editor["ojroques/nvim-bufdel"] = { --buffer操作(改用bd！自动命令)
+-- 	lazy = true,
+-- 	event = "BufReadPost",
+-- }
 
 editor["numToStr/Comment.nvim"] = { --注释插件
 	lazy = true,

@@ -9,6 +9,7 @@ local mapping = {}
 function mapping.lsp(buf)
 	local map = {
 		-- LSP-related keymaps, work only when event = { "InsertEnter", "LspStart" }
+		["n|gC"] = map_cr("CodeiumEnable"):with_silent():with_noremap():with_desc("Codeium Enable"),
 		["n|<leader>xc"] = map_cr("Lspsaga show_line_diagnostics"):with_buffer(buf):with_desc("lsp: Line diagnostic"),
 		["n|<leader>Lf"] = map_cr("LspInfo"):with_buffer(buf):with_desc("lsp: Info"),
 		["n|<leader>Lr"] = map_cr("LspRestart"):with_buffer(buf):with_nowait():with_desc("lsp: Restart"),

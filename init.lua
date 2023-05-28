@@ -1,6 +1,6 @@
 if not vim.g.vscode then
 	require("core")
-
+	vim.g.loaded_perl_provider = 0
 	-- Release note
 	-- 	vim.schedule(function()
 	-- 		vim.notify_once(

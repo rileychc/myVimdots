@@ -40,6 +40,14 @@ ui["sainnhe/edge"] = { --主题
 	lazy = true,
 	config = require("ui.edge"),
 }
+ui["shaunsingh/nord.nvim"] = { --主题
+	lazy = true,
+	config = require("ui.nord"),
+}
+ui["folke/tokyonight.nvim"] = {
+	lazy = true,
+	config = require("ui.tokyonight"),
+}
 ui["j-hui/fidget.nvim"] = { --实时显示lsp状态
 	lazy = true,
 	event = "LspAttach",
@@ -60,20 +68,13 @@ ui["nvim-lualine/lualine.nvim"] = { --底部状态栏
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
 	config = require("ui.lualine"),
 }
-ui["zbirenbaum/neodim"] = { --用于调暗未使用的函数、变量、参数等的亮点
-	lazy = true,
-	event = "LspAttach",
-	config = require("ui.neodim"),
-}
+
 ui["karb94/neoscroll.nvim"] = { --平滑滑动屏幕
 	lazy = true,
 	event = "BufReadPost",
 	config = require("ui.neoscroll"),
 }
-ui["shaunsingh/nord.nvim"] = { --主题
-	lazy = true,
-	config = require("ui.nord"),
-}
+
 ui["rcarriga/nvim-notify"] = { --通知窗口
 	lazy = true,
 	event = "VeryLazy",

@@ -138,6 +138,30 @@ tool["mfussenegger/nvim-dap"] = {
 			"rcarriga/nvim-dap-ui",
 			config = require("tool.dap.dapui"),
 		},
+
+		{
+			"theHamsta/nvim-dap-virtual-text", --虚拟文本(可有可无)
+			opts = {
+				enabled = true,
+				enable_commands = true, --创建命令DapVirtualTextEnable，DapVirtualTextDisable，DapVirtualTextToggle，（当调试适配器没有通知其终止时，DapVirtualTextForceRefresh用于刷新）
+				highlight_changed_variables = true, --使用NvimDapVirtualTextChanged突出显示更改的值，否则总是NvimDapVirtualText
+				highlight_new_as_changed = true, --以与更改变量相同的方式突出显示新变量（如果highlight_changed_variables）
+				show_stop_reason = true, --当因异常而停止时显示停止原因
+				commented = true, --用注释字符串前缀虚拟文本
+				only_first_definition = true, --仅在第一个定义时显示虚拟文本（如果有多个）
+				all_references = false, --在变量的所有引用上显示虚拟文本（不仅仅是定义）
+				filter_references_pattern = "<module",
+				virt_text_pos = "eol", --虚拟文本的位置，请参阅`:h nvim_buf_set_extmark()`
+				all_frames = false, --显示所有堆栈帧的虚拟文本，而不仅仅是当前。仅适用于我的机器上的调试。
+				virt_lines = false, --显示虚拟行而不是虚拟文本（将闪烁！）
+				virt_text_win_col = nil,
+			},
+		},
+		{
+			"Weissle/persistent-breakpoints.nvim", --保存断点(可有可无)
+			event = "BufReadPost",
+			opts = { load_breakpoints_event = "BufReadPost" },
+		},
 	},
 }
 

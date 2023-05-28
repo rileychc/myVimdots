@@ -1,5 +1,8 @@
 return function() --好像跟cmp补全不冲突
 	--好中文补全不太好使
+	-- vim.g.codeium_manual = true
+	vim.g.codeium_enabled = false
+
 	vim.g.codeium_disable_bindings = 1
 	vim.keymap.set("i", "<C-e>", function()
 		return vim.fn["codeium#Accept"]()

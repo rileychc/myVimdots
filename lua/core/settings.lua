@@ -36,7 +36,8 @@ settings["palette_overwrite"] = {}
 -- Set the colorscheme to use here.
 -- Available values are: `catppuccin`, `catppuccin-latte`, `catppucin-mocha`, `catppuccin-frappe`, `catppuccin-macchiato`, `edge`, `nord`.
 ---@type string
-settings["colorscheme"] = "edge"
+-- settings["colorscheme"] = "edge"
+settings["colorscheme"] = "tokyonight"
 
 -- Set it to true if your terminal has transparent background.
 ---@type boolean

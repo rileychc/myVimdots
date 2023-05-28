@@ -60,7 +60,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- Fix fold issue of files opened by telescope
+-- 修复了望远镜打开文件的折叠问题
 vim.api.nvim_create_autocmd("BufRead", {
 	callback = function()
 		vim.api.nvim_create_autocmd("BufWinEnter", {
@@ -69,6 +69,34 @@ vim.api.nvim_create_autocmd("BufRead", {
 		})
 	end,
 })
+
+--在保证窗口布局的情况下删除缓冲区
+vim.api.nvim_create_user_command("BufferDelete", function()
+	---@diagnostic disable-next-line: missing-parameter
+	local file_exists = vim.fn.filereadable(vim.fn.expand("%p"))
+	local modified = vim.api.nvim_buf_get_option(0, "modified")
+	if file_exists == 0 and modified then
+		local user_choice = vim.fn.input("The file is not saved, whether to force delete? Press enter or input [y/n]:")
+		if user_choice == "y" or string.len(user_choice) == 0 then
+			vim.cmd("bd!")
+		end
+		return
+	end
+	local force = not vim.bo.buflisted or vim.bo.buftype == "nofile"
+	vim.cmd(force and "bd!" or string.format("bp | bd! %s", vim.api.nvim_get_current_buf()))
+end, { desc = "Delete the current Buffer while maintaining the window layout" })
+--创建缺失的目录
+vim.api.nvim_create_user_command("MakeDirectory", function()
+	---@diagnostic disable-next-line: missing-parameter
+	local path = vim.fn.expand("%")
+	local dir = vim.fn.fnamemodify(path, ":p:h")
+	if vim.fn.isdirectory(dir) == 0 then
+		vim.fn.mkdir(dir, "p")
+	else
+		---@diagnostic disable-next-line: param-type-mismatch
+		vim.notify("Directory already exists", "WARN", { title = "Nvim" })
+	end
+end, { desc = "Create directory if it doesn't exist" })
 
 function autocmd.load_autocmds()
 	vim.cmd([[
@@ -121,7 +149,7 @@ endfunc
 				0,
 				"n",
 				"<F19>",
-				"<ESC>:w<CR>:split<CR>:te gcc -std=c17 -Wshadow -Wall -o ~/Public/Bin_Files/%:t:r.out % -g -I ./include/ -I .. -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG && time <CR>i",
+				"<ESC><cmd>!g++ -std=c++17 -Wshadow -Wall -o ~/Public/Bin_Files/%:t:r.out  % -g -I ./include/ -I .. -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG<CR><CR>",
 				{ silent = true, noremap = true }
 			)
 		end,
@@ -134,7 +162,7 @@ endfunc
 				0,
 				"n",
 				"<F19>",
-				"<ESC>:w<CR>:split<CR>:te g++ -std=c++20 -Wshadow -Wall -o ~/Public/Bin_Files/%:t:r.out  % -g -I ./include/ -I .. -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG && time <CR>i",
+				"<ESC><cmd>!g++ -std=c++17 -Wshadow -Wall -o ~/Public/Bin_Files/%:t:r.out  % -g -I ./include/ -I .. -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG<CR><CR>",
 				{ silent = true, noremap = true }
 			)
 		end,
@@ -164,7 +192,7 @@ endfunc
 				0,
 				"n",
 				"<F7>",
-				"<ESC>:w<CR>:split<CR>:te g++ -std=c++17 -Wshadow -Wall -o ~/Public/Bin_Files/%:t:r.out %  -g -I ./include/ -I ..  -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG && time ~/Public/Bin_Files/%:t:r.out<CR>i\n", --
+				"<ESC>:w<CR>:split<CR>:te g++ -std=c++17 -Wshadow -Wall -o ~/Public/Bin_Files/%:t:r.out %  -g -I ./include/  -I /Users/riley/Public/Leetcode/cpp/  -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG && time ~/Public/Bin_Files/%:t:r.out<CR>i\n", --
 				{ silent = true, noremap = true }
 			)
 		end,

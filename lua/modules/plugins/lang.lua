@@ -21,8 +21,10 @@ lang["Saecki/crates.nvim"] = {
 lang["iamcco/markdown-preview.nvim"] = { --markdown预览插件
 	lazy = true,
 	ft = "markdown",
-	build = ":call mkdp#util#install()",
+	build = "source /usr/share/nvm/init-nvm.sh; nvm use v18; cd app && npm install",
+	config = require("lang.markdown-preview"),
 }
+
 lang["chrisbra/csv.vim"] = {
 	lazy = true,
 	ft = "csv",
